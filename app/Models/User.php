@@ -63,6 +63,6 @@ class User extends Authenticatable
     //Relacion uno a muchos
     public function products(){
         return $this->hasMany(Product::class); 
-    };
+    }
 
 }

@@ -12,5 +12,5 @@ class Category extends Model
     //Relacion uno a muchos
     public function products(){
         return $this->hasMany(Product::class); 
-    };
+    }
 }
