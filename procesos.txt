@@ -1,0 +1,13 @@
+Este proyecto fue creado desde la terminal de Xampp, seguidamente me situé en el directorio donde queria crear mi proyecto (htdocs), ejecuté el comando "laravel new 'loremket' --jet" para crear un nuevo proyecto llamado 'loremket' con jetstream, luego seleccioné livewire como libreria.
+
+PARA LA CREACIÓN DE MIGRACIONES Y MODELOS UTILICÉ:
+php artisan make:model Category -m (crea un modelo con su migración).
+
+-Configuré el archivo filesystems.php ubicado en la carpeta config
+ en este archivo modifique la linea 16 
+ 'default' => env('FILESYSTEM_DRIVER', 'local'), 
+ modificando la ubicacion de la carpeta local a public donde quiero que se realice la creacion de una carpeta que contendria las iamgenes creadas por el ImagesFactory
+ 'default' => env('FILESYSTEM_DRIVER', 'public').
+
+- Ejecuté 'composer require livewire/livewire' framework usado en este proyecto.
+- El navbar es gracias a https://tailwindui.com/preview#component-10058606cac5398d7fa2c73b64089874
