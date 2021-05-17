@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\tag;
 
 class ProductController extends Controller
 {
@@ -33,5 +34,11 @@ class ProductController extends Controller
                             ->paginate(4);
 
         return view('pages.products.category', compact('products', 'category'));
+    }
+
+    public function tag(Tag $tag){
+        $products = $tag->products()->where('status', 2)->latest('id')->paginate(4);
+
+        return view('pages.products.tag', compact('products', 'tag'));
     }
 }

@@ -2,7 +2,9 @@ Este proyecto fue creado desde la terminal de Xampp, seguidamente me situé en e
 
 PARA LA CREACIÓN DE MIGRACIONES Y MODELOS UTILICÉ:
 php artisan make:model Category -m (crea un modelo con su migración).
+php artisan make:controller Admin\HomeController (crea una carpeta Admin y dentro un controlador donde se ejecutará todo lo referente a los permisos de admin)
 
+(Factory ImagesFactory)
 -Configuré el archivo filesystems.php ubicado en la carpeta config
  en este archivo modifique la linea 16 
  'default' => env('FILESYSTEM_DRIVER', 'local'), 
@@ -11,3 +13,15 @@ php artisan make:model Category -m (crea un modelo con su migración).
 
 - Ejecuté 'composer require livewire/livewire' framework usado en este proyecto.
 - El navbar es gracias a https://tailwindui.com/preview#component-10058606cac5398d7fa2c73b64089874
+
+(Routes)
+-Para no estar escribiendo la ruta admin estableci un prefijo en RouteServiceProvider 
+
+(AdminLTE)Para crear tener una seccion administrativa sin la necesidad de crear una desde cero
+-composer require jeroennoten/laravel-adminlte
+-php artisan adminlte:install
+[AdminLTE contiene font awesome iconos gratuitos en linea]
+
+(Laravel collective)Me ayuda a elaborar los forms
+-composer require laravelcollective/html
+-
