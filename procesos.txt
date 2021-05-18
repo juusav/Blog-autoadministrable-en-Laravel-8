@@ -24,4 +24,6 @@ php artisan make:controller Admin\HomeController (crea una carpeta Admin y dentr
 
 (Laravel collective)Me ayuda a elaborar los forms
 -composer require laravelcollective/html
--
+
+CREACION DE COMPONENTE LIVEWIRE PRODUCT-INDEX esto me permite trabajar con livewire y la plantilla de AdminLTE
+-php artisan make:livewire App\ProductIndex
