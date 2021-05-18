@@ -14,8 +14,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $categories = Category::all();
         return view('admin.categories.index', compact('categories'));
     }
@@ -25,9 +24,7 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-
+    public function create(){
         return view('admin.categories.create');
     }
 
@@ -37,14 +34,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) //Este metodo es el encargado de crear una nueva categoria
-    {
-        $request->validate([
+    public function store(Request $request){ 
+        //Encargado de validar la creación de una nueva categoria
+        $request->validate([ 
             'name'=>'required',
             'slug'=>'required|unique:categories'
         ]);
-        
+
+        //Encarga de crear
         $category = Category::create($request->all());
+        
+        //Redireccion a la misma vista con mensaje que se ha creado correctamente
         return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoría se creó correctamente');
     }
 
@@ -54,8 +54,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
-    {
+    public function show(Category $category){
         return view('admin.categories.show', compact('category'));
     }
 
@@ -65,8 +64,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
-    {
+    public function edit(Category $category){
         return view('admin.categories.edit', compact('category'));
     }
 
@@ -77,13 +75,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
-    {
+    public function update(Request $request, Category $category){
         $request->validate([
             'name'=>'required',
             'slug'=>"required|unique:categories,slug,$category->id" //Ignora el slug de la categoria que queremos cambiar. En otras palabras, esto no permite poner el nombre de un slug creado en otra categoria.
         ]);
-
         $category->update($request->all());
 
         return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoría se actualizó correctamente');
@@ -95,8 +91,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
-    {
+    public function destroy(Category $category){
         $category->delete();
         return redirect()->route('admin.categories.index')->with('info', 'La categoría se eliminó correctamente');
     }

@@ -17,7 +17,7 @@ php artisan make:controller Admin\HomeController (crea una carpeta Admin y dentr
 (Routes)
 -Para no estar escribiendo la ruta admin estableci un prefijo en RouteServiceProvider 
 
-(AdminLTE)Para crear tener una seccion administrativa sin la necesidad de crear una desde cero
+(AdminLTE)Para tener una seccion administrativa sin la necesidad de crear una desde cero
 -composer require jeroennoten/laravel-adminlte
 -php artisan adminlte:install
 [AdminLTE contiene font awesome iconos gratuitos en linea]
