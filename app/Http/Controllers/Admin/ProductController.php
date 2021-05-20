@@ -5,82 +5,87 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\tag;
 
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProductRequest;
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+    public function __construct(){
+        $this->middleware('can:admin.products.index')->only('index');
+        $this->middleware('can:admin.products.destroy')->only('destroy');
+        $this->middleware('can:admin.products.create')->only('create', 'store');
+        $this->middleware('can:admin.products.edit')->only('edit', 'update');
+    }
+    public function index(){
         return view('admin.products.index');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.products.create');
+    public function create(){
+        $categories = Category::pluck('name', 'id'); //Pluck crea array del valor especificado 
+        $tags = Tag::all();
+        return view('admin.products.create', compact('categories', 'tags'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    //Cuando llegue acá validará los datos del form y relacionará el product con los tags seleccionados 
+    public function store(ProductRequest $request){ 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        return view('admin.products.show', compact('product'));
-    }
+        $product = Product::create($request->all());
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        return view('admin.products.edit', compact('product'));
-    }
+        if($request->file('file')){
+            $url = Storage::put('products', $request->file('file'));
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
+            $product->image()->create([
+                'url'=> $url
+            ]);
+        };
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
+        if($request->tags){
+            $product->tags()->attach($request->tags);
+        }
+        return redirect()->route('admin.products.edit', $product);
+    }
+    public function edit(Product $product){
+        $this->authorize('author', $product);
+
+        $categories = Category::pluck('name', 'id'); //Pluck crea array del valor especificado 
+        $tags = Tag::all();
+        
+        return view('admin.products.edit', compact('product', 'categories', 'tags'));
+    }
+    public function update(ProductRequest $request, Product $product){
+        $this->authorize('author', $product);
+
+        $product->update($request->all());
+
+        if ($request->file('file')){
+            $url = Storage::put('products', $request->file('file'));
+
+            if($product->image){
+                Storage::delete($product->image->url);
+
+                $product->image->update([
+                    'url' => $url
+                ]);
+
+            }else{
+                $product->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        if($request->tags){
+            $product->tags()->sync($request->tags);
+        }
+
+        return redirect()->route('admin.products.edit', $product)->with('info', 'El producto se actualizó correctamente');
+    }
+    public function destroy(Product $product){
+        $this->authorize('author', $product);        
+
+        $product->delete();
+
+        return redirect()->route('admin.products.index', $product)->with('info', 'El producto se eliminó correctamente');
     }
 }

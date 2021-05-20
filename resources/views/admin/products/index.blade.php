@@ -3,10 +3,18 @@
 @section('title', 'Loremket-Admin')
 
 @section('content_header')
+    <a href="{{route('admin.products.create')}}" class="btn btn-secondary btn-sm float-right">
+        Publicar nuevo producto
+    </a>
     <h1>Listado de productos</h1>
 @stop
 
 @section('content')
+    @if (session('info'))
+    <div class="alert alert-success">
+        <strong>{{session('info')}}</strong>
+    </div>
+    @endif
     @livewire('admin.products-index')
 @stop
 

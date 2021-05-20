@@ -15,6 +15,9 @@ class ProductController extends Controller
         return view('pages.products.index',compact('product')); //Compact crea un array de variables con sus valores.
     }
     public function show(Product $product){
+
+        $this->authorize('published', $product);
+        
         $similares = Product::where('category_id', $product->category_id) //Filtra TODOS los productos cuyo category_id coincide con el category_id del $product
                             ->where('status', 2)
                             ->where('id','!=', $product) //Muestra todos los productos pero no se repite él mismo producto en los productos llamados

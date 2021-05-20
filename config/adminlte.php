@@ -237,32 +237,43 @@ return [
         [
             'text'        => 'gestor',
             'route'         => 'admin.home',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-tachometer-alt fa-fw',
+            'can'          => 'admin.home'
         ],
-        ['header' => 'ADMINISTRADOR'],
+        [
+            'text'        => 'Usuarios',
+            'route'         => 'admin.users.index',
+            'icon'        => 'far fa-user fa-fw',
+            'can'          => 'admin.users.index'
+        ],
+        
         [
             'text' => 'Categorías',
             'route'  => 'admin.categories.index',
             'icon' => 'fas fa-fw fa-user',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'], //Todas las categorias 
+            'can'          => 'admin.categories.index'
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'far fa-fw fa-bookmark',
-            'active' => ['admin/tags*']
+            'active' => ['admin/tags*'],
+            'can'          => 'admin.tags.index'
         ],
         
         ['header' => 'HERRAMIENTAS'],
         [
             'text'       => 'Lista de productos',
             'route'        => 'admin.products.index',
-            'icon'        => 'fas fa-fw fa-clipboard'
+            'icon'        => 'fas fa-fw fa-clipboard',
+            'can'          => 'admin.products.index'
         ],
         [
             'text'       => 'Publicar nuevo producto',
             'route'        => 'admin.products.create',
-            'icon'      => 'fas fa-fw fa-file'
+            'icon'      => 'fas fa-fw fa-file',
+            'can'          => 'admin.products.create'
         ],
     ],
 

@@ -17,12 +17,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Storage::deleteDirectory('products');
+        Storage::deleteDirectory('products');//Primero la elimina para no tener muchas carpetas con muchas imagenes
         Storage::makeDirectory('products'); //crea una carpeta en Storage
 
+        $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+
         Category::factory(4)->create();
-        Tag::factory(8)->create();
+        Tag::factory(20)->create();
         $this->call(ProductSeeder::class);
     }
 }

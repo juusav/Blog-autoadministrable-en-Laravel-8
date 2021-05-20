@@ -3,6 +3,9 @@
 @section('title', 'Loremket-Admin')
 
 @section('content_header')
+    @can('admin.categories.create')
+    <a href="{{route('admin.categories.create')}}" class="btn btn-prim btn-secondary btn-sm float-right">Agregar categoría</a>
+    @endcan
     <h1>Lista de categorias</h1>
 @stop
 
@@ -15,9 +18,6 @@
     @endif
 
     <div class="card">
-        <div class="card-header">
-            <a href="{{route('admin.categories.create')}}" class="btn btn-prim btn-secondary">Agregar categoría</a>
-        </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
@@ -32,15 +32,19 @@
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->name}}</td>
                                 <td width="10px">
+                                    @can('admin.categories.edit')
                                     <a class="btn btn-warning" href="{{route('admin.categories.edit', $category)}}">Editar</a>
+                                    @endcan
                                 </td>
                                 <td width="10px">
-                                    <form action="{{route('admin.categories.destroy', $category)}}" method="post">
-                                        @csrf
-                                        @method('delete')
+                                    @can('admin.categories.destroy')
+                                        <form action="{{route('admin.categories.destroy', $category)}}" method="post">
+                                            @csrf
+                                            @method('delete')
 
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
+                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        </form>
+                                    @endcan
                                 </td>
                             </tr>
                         @endforeach
