@@ -24,26 +24,22 @@
             {{-- List --}}
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-center">
-                    <img class="block lg:hidden h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
-                    <img class="hidden lg:block h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                        alt="Workflow">
+                    <a href="{{route('products.index')}}">
+                        <p class="font-mono text-white hover:text-yellow-500 tracking-wider text-3xl">SkateShop</p>
+                    </a>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
-                        {{-- <a href="#" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-                            aria-current="page">Dashboard</a> --}}
-                        @foreach ($categories as $category)    
-                            <a href="{{route('product.category', $category)}}"
+                        @foreach ($categories as $category)
+                        <a href="{{route('product.category', $category)}}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{$category->name}}</a>
                         @endforeach
                     </div>
                 </div>
             </div>
 
-            
-            @auth                
+
+            @auth
             {{-- Notificaciones y perfil --}}
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {{-- Notificaciones --}}
@@ -60,7 +56,7 @@
                 <div class="ml-3 relative" x-data="{open:false}">
                     {{-- Foto de perfil --}}
                     <div>
-                        <button x-on:click="open = true" type="button" 
+                        <button x-on:click="open = true" type="button"
                             class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                             id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                             <span class="sr-only">Open user menu</span>
@@ -68,21 +64,23 @@
                         </button>
                     </div>
                     {{-- Perfil y cerrar sesión --}}
-                    <div x-show="open" x-on:click.away="open = false"class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    <div x-show="open" x-on:click.away="open = false"
+                        class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                         role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                        
-                        <a href="{{route('profile.show')}}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-0">Tu perfil</a>
 
-                            @can('admin.home')
-                                <a href="{{route('admin.home')}}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                                id="user-menu-item-0">Gestor</a>
-                            @endcan
-                        
+                        <a href="{{route('profile.show')}}" class="block px-4 py-2 text-sm text-gray-700"
+                            role="menuitem" tabindex="-1" id="user-menu-item-0">Tu perfil</a>
+
+                        @can('admin.home')
+                        <a href="{{route('admin.home')}}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                            tabindex="-1" id="user-menu-item-0">Gestor</a>
+                        @endcan
+
                         <form action="{{route('logout')}}" method="post">
                             @csrf
-                            <a href="{{route('logout')}}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
-                            id="user-menu-item-2"  onclick="event.preventDefault(); this.closest('form').submit();">Cerrar sesión</a>
+                            <a href="{{route('logout')}}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+                                tabindex="-1" id="user-menu-item-2"
+                                onclick="event.preventDefault(); this.closest('form').submit();">Cerrar sesión</a>
                         </form>
                     </div>
                 </div>
@@ -90,9 +88,10 @@
             @else
 
             <a href="{{route('login')}}"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Iniciar sesión</a>
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Iniciar
+                sesión</a>
             <a href="{{route('register')}}"
-            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Registrarse</a>
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Registrarse</a>
             @endauth
 
         </div>
@@ -105,7 +104,7 @@
                 aria-current="page">Dashboard</a> --}}
 
             @foreach ($categories as $category)
-                <a href="{{route('product.category', $category)}}"
+            <a href="{{route('product.category', $category)}}"
                 class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{$category->name}}</a>
             @endforeach
         </div>

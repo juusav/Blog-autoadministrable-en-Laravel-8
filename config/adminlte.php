@@ -255,7 +255,7 @@ return [
             'can'          => 'admin.categories.index'
         ],
         [
-            'text' => 'Etiquetas',
+            'text' => 'Subcategorias',
             'route'  => 'admin.tags.index',
             'icon' => 'far fa-fw fa-bookmark',
             'active' => ['admin/tags*'],

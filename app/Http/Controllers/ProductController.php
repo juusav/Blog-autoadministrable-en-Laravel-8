@@ -9,10 +9,10 @@ use App\Models\tag;
 
 class ProductController extends Controller
 {
+
     public function index(){
-        $product = Product::where('status', 2)->latest('id')->paginate(4); //Retorna todos los productos que esten en estado 2 
-        
-        return view('pages.products.index',compact('product')); //Compact crea un array de variables con sus valores.
+        $products = Product::where('status', 2)->latest('id')->paginate(6); //Retorna todos los productos que esten en estado 2 
+        return view('pages.products.index', compact('products')); //Compact crea un array de variables con sus valores.
     }
     public function show(Product $product){
 
@@ -31,13 +31,13 @@ class ProductController extends Controller
         $products = Product::where('category_id', $category->id)
                             ->where('status', 2)
                             ->latest('id')
-                            ->paginate(4);
+                            ->paginate(16);
 
         return view('pages.products.category', compact('products', 'category'));
     }
-    public function tag(Tag $tag){
-        $products = $tag->products()->where('status', 2)->latest('id')->paginate(4);
+    // public function tag(Tag $tag){
+    //     $products = $tag->products()->where('status', 2)->latest('id')->paginate(4);
 
-        return view('pages.products.tag', compact('products', 'tag'));
-    }
+    //     return view('pages.products.tag', compact('products', 'tags'));
+    // }
 }

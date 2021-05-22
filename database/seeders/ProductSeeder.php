@@ -14,7 +14,7 @@ class ProductSeeder extends Seeder
      * @return void
      */
     public function run() {
-        $products = Product::factory(300)->create(); //Por cada producto que se genere se descarga una imagen y la informacion de esa imagen se almacena en la tabla images
+        $products = Product::factory(200)->create(); //Por cada producto que se genere se descarga una imagen y la informacion de esa imagen se almacena en la tabla images
 
         foreach ($products as $product) {
             Image::factory(1)->create([

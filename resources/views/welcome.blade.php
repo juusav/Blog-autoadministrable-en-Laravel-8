@@ -1,6 +1,3 @@
-<x-app-layout>
-    Hola perra
-</x-app-layout>
 
 {{-- 
 <!DOCTYPE html>

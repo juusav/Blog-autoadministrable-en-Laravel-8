@@ -3,36 +3,50 @@
 @section('title', 'Loremket-Admin')
 
 @section('content_header')
-    <h1>Publicar nuevo producto</h1>
+<h1>Publicar nuevo producto</h1>
 @stop
 
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            {!! Form::open(['route' => 'admin.products.store', 'autocomplete' => 'off', 'files' => true]) !!}
-
-                @include('admin.products.partials.form')
-
-                {!! Form::submit('Crear post', ['class' => 'btn btn-primary']) !!}
-
-            {!! Form::close() !!}
-
-        </div>
+@if (session('info'))
+    <div class="alert alert-success">
+        <strong>{{session('info')}}</strong>
     </div>
+@endif
+<div class="card">
+    <div class="card-body">
+        {!! Form::open(['route' => 'admin.products.store', 'autocomplete' => 'off', 'files' => true]) !!}
+
+        @include('admin.products.partials.form')
+
+        {!! Form::submit('Crear post', ['class' => 'btn btn-primary']) !!}
+
+        {!! Form::close() !!}
+
+    </div>
+</div>
 @stop
 
 @section('css')
-    <style>
-        .image-wrapper{position: relative; padding-bottom: 56.25%;}
-        .image-wrapper img{position: absolute; object-fit: cover; width: 100%; height: 100%;}
-    </style>
+<style>
+    .image-wrapper {
+        position: relative;
+        padding-bottom: 56.25%;
+    }
+
+    .image-wrapper img {
+        position: absolute;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+</style>
 @stop
 @section('js')
-    <script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+<script src="{{asset('vendor/jQuery-Plugin-stringToSlug-1.3/jquery.stringToSlug.min.js')}}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
-    <script>
-        $(document).ready(function(){
+<script>
+    $(document).ready(function(){
             $("#name").stringToSlug({
                 setEvents: 'keyup keydown blur',
                 getPut: '#slug',
@@ -65,5 +79,5 @@
 
             reader.readAsDataURL(file);
         }
-    </script>
+</script>
 @endsection

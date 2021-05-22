@@ -6,23 +6,23 @@
             {!!$product->extract!!}
         </div>
 
+        {{-- Contenido principal --}}
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {{-- Contenido principal --}}
-            <div class="lg:grid-cols-2">
+            <div class="lg:col-span-2">
                 <figure>
                     @if ($product->image)
-                    <img src="{{Storage::url($product->image->url)}}" class="w-full h-80 object-cover object-center">
+                        <img src="{{Storage::url($product->image->url)}}" class="w-full h-80 object-cover object-center">
                     @else
-                    <img src="https://cdn.pixabay.com/photo/2020/06/19/21/44/watermelon-5318938_960_720.jpg" class="w-full h-80 object-cover object-center">
+                        <img src="https://cdn.pixabay.com/photo/2020/06/19/21/44/watermelon-5318938_960_720.jpg" class="w-full h-80 object-cover object-center">
                     @endif
                 </figure>
                 <div class="text-base text-gray-500 mt-4">
-                    {!!$product-body!!}
+                    {!!$product->body!!}
                 </div>
             </div>
 
             {{-- Contenido Relacionado --}}
-            <aside>
+            {{-- <aside>
                 <h1 class="text-2xl font-bold text-gray-600 mb-4">Más productos en {{$product->category->name}}</h1>
 
                 <ul>
@@ -39,7 +39,7 @@
                         </li>         
                     @endforeach
                 </ul>
-            </aside>
+            </aside> --}}
         </div>
     </div>
 </x-app-layout>

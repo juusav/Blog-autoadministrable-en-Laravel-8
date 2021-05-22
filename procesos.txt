@@ -8,7 +8,7 @@ php artisan make:controller Admin\HomeController (crea una carpeta Admin y dentr
 -Configuré el archivo filesystems.php ubicado en la carpeta config
  en este archivo modifique la linea 16 
  'default' => env('FILESYSTEM_DRIVER', 'local'), 
- modificando la ubicacion de la carpeta local a public donde quiero que se realice la creacion de una carpeta que contendria las iamgenes creadas por el ImagesFactory
+ modificando la ubicacion de la carpeta local a public donde quiero que se realice la creacion de una carpeta que contendria las imagenes creadas por el ImagesFactory
  'default' => env('FILESYSTEM_DRIVER', 'public').
 
 - Ejecuté 'composer require livewire/livewire' framework usado en este proyecto.

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-Route::view('/', 'pages.HomeLoremket')->name('view.homeLoremket');
+Route::get('/', [ProductController::class, 'index'])->name('products.index');
 
 //Products
 Route::get('products/{product}', [ProductController::class, 'show'])->name('product.show');

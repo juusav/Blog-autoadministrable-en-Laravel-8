@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
 
-        Category::factory(4)->create();
+        Category::factory(5)->create();
         Tag::factory(20)->create();
         $this->call(ProductSeeder::class);
     }
