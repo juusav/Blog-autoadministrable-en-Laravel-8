@@ -31,8 +31,10 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
                         @foreach ($categories as $category)
-                        <a href="{{route('product.category', $category)}}"
-                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{$category->name}}</a>
+                        <a  href="{{route('product.category', $category)}}"
+                            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium Fathercategory">
+                            {{$category->name}}
+                        </a>
                         @endforeach
                     </div>
                 </div>
@@ -110,3 +112,9 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .subcategory{display: none; position: absolute;}
+    .Fathercategory:hover .subcategory{display: block;}
+
+</style>

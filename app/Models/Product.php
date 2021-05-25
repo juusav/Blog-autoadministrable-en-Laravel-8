@@ -11,17 +11,16 @@ class Product extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    public function getRouteKeyName() //Deja de ocupar el id en la parte de la url y pasa a ocupar el slug
+    {
+        return "slug";
+    }
     //Relacion uno a muchos inversa
     public function user(){
         return $this->belongsTo(user::class);
     }
     public function category(){
         return $this->belongsTo(category::class);
-    }
-
-    //Relacion muchos a muchos
-    public function tags(){
-        return $this->belongsToMany(tag::class);
     }
 
     //Relacion uno a uno polimorfica

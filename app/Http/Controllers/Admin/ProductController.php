@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\tag;
 
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
@@ -23,11 +22,10 @@ class ProductController extends Controller
     }
     public function create(){
         $categories = Category::pluck('name', 'id'); //Pluck crea array del valor especificado 
-        $tags = Tag::all();
-        return view('admin.products.create', compact('categories', 'tags'));
+        return view('admin.products.create', compact('categories'));
     }
 
-    //Cuando llegue acá validará los datos del form y relacionará el product con los tags seleccionados 
+    //Cuando llegue acá validará los datos del form
     public function store(ProductRequest $request){ 
 
         $product = Product::create($request->all());
@@ -40,22 +38,17 @@ class ProductController extends Controller
             ]);
         };
 
-        if($request->tags){
-            $product->tags()->attach($request->tags);
-        }
-        return redirect()->route('admin.products.edit', $product);
+        return redirect()->route('admin.products.index', $product);
     }
     public function edit(Product $product){
         $this->authorize('author', $product);
 
         $categories = Category::pluck('name', 'id'); //Pluck crea array del valor especificado 
-        $tags = Tag::all();
         
-        return view('admin.products.edit', compact('product', 'categories', 'tags'));
+        return view('admin.products.edit', compact('product', 'categories'));
     }
     public function update(ProductRequest $request, Product $product){
         $this->authorize('author', $product);
-
         $product->update($request->all());
 
         if ($request->file('file')){
@@ -74,11 +67,6 @@ class ProductController extends Controller
                 ]);
             }
         }
-
-        if($request->tags){
-            $product->tags()->sync($request->tags);
-        }
-
         return redirect()->route('admin.products.edit', $product)->with('info', 'El producto se actualizó correctamente');
     }
     public function destroy(Product $product){

@@ -16,9 +16,9 @@
     <div class="card-body">
         {!! Form::open(['route' => 'admin.products.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-        @include('admin.products.partials.form')
+            @include('admin.products.partials.form')
 
-        {!! Form::submit('Crear post', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('Crear post', ['class' => 'btn btn-primary']) !!}
 
         {!! Form::close() !!}
 
@@ -28,17 +28,8 @@
 
 @section('css')
 <style>
-    .image-wrapper {
-        position: relative;
-        padding-bottom: 56.25%;
-    }
-
-    .image-wrapper img {
-        position: absolute;
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
+    .image-wrapper {position: relative; padding-bottom: 56.25%;}
+    .image-wrapper img {position: absolute; object-fit: cover; width: 100%; height: 100%;}
 </style>
 @stop
 @section('js')

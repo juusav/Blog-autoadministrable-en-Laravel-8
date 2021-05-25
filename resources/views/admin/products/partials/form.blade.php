@@ -1,3 +1,4 @@
+{{-- nombre --}}
 <div class="form-group">
     {!! Form::label('name', 'Nombre:') !!}        
     {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el nombre del producto ']) !!}
@@ -8,6 +9,7 @@
 
 </div>
 
+{{-- slug --}}
 <div class="form-group">
     {!! Form::label('slug', 'Slug:') !!}        
     {!! Form::text('slug', null, ['class' => 'form-control', 'placeholder' => 'Este será el nombre que saldrá en la url', 'readonly']) !!}
@@ -17,6 +19,7 @@
     @enderror
 </div>
 
+{{-- categoria --}}
 <div class="form-group">
     {!! Form::label('category_id', 'Categoría:') !!}        
     {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
@@ -26,22 +29,7 @@
     @enderror
 </div>
 
-<div class="form-group">
-    <p class="font-weight-bold">Etiquetas</p>
-    @foreach ($tags as $tag)
-        <label class="mr-2">
-            {!! Form::checkbox('tags[]', $tag->id, null) !!}  {{-- Null es para decirle que no marque nada por default --}}
-            {{$tag->name}}
-        </label>
-    @endforeach
-
-    
-    @error('tags')
-        <br>
-        <small class="text-danger">{{$message}}</small>
-    @enderror
-</div>
-
+{{-- estado --}}
 <div class="form-group">
     <p class="font-weight-bold">Estado</p>
     <label class="mr-2">
@@ -60,6 +48,7 @@
     @enderror
 </div>
 
+{{-- imagen --}}
 <div class="row mb-3">
     <div class="col">
         <div class="image-wrapper">
@@ -83,6 +72,7 @@
     </div>
 </div>
 
+{{-- extracto --}}
 <div class="form-group">
     {!! Form::label('extract', 'Extracto:') !!}        
     {!! Form::textarea('extract', null, ['class' => 'form-control']) !!}
@@ -92,11 +82,22 @@
     @enderror
 </div>
 
+{{-- informacion --}}
 <div class="form-group">
     {!! Form::label('body', 'Información del producto:') !!}        
     {!! Form::textarea('body', null, ['class' => 'form-control']) !!}
 
     @error('body')
+        <small class="text-danger">{{$message}}</small>
+    @enderror
+</div>
+
+{{-- Price --}}
+<div class="form-group">
+    {!! Form::label('price', 'Precio:') !!}        
+    {!! Form::number('price', null, ['class' => 'form-control','step'=>'any']) !!}
+
+    @error('name')
         <small class="text-danger">{{$message}}</small>
     @enderror
 </div>

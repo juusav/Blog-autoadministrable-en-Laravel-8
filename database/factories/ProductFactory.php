@@ -29,8 +29,9 @@ class ProductFactory extends Factory
 
         return [
             'name' => $name,
+            'price' => $this->faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = 100.00),
             'slug' => Str::slug($name),
-            'extract' => $this->faker->text(120),
+            'extract' => $this->faker->text(60),
             'body' => $this->faker->text(200),
             'status' => $this->faker->randomElement([1, 2]),
             'category_id' => Category::all()->random()->id,

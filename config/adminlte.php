@@ -250,17 +250,17 @@ return [
         [
             'text' => 'Categorías',
             'route'  => 'admin.categories.index',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-th',
             'active' => ['admin/categories*'], //Todas las categorias 
             'can'          => 'admin.categories.index'
         ],
-        [
-            'text' => 'Subcategorias',
-            'route'  => 'admin.tags.index',
-            'icon' => 'far fa-fw fa-bookmark',
-            'active' => ['admin/tags*'],
-            'can'          => 'admin.tags.index'
-        ],
+        // [
+        //     'text' => 'Subcategorias',
+        //     'route'  => 'admin.tags.index',
+        //     'icon' => 'far fa-fw fa-bookmark',
+        //     'active' => ['admin/tags*'],
+        //     'can'          => 'admin.tags.index'
+        // ],
         
         ['header' => 'HERRAMIENTAS'],
         [

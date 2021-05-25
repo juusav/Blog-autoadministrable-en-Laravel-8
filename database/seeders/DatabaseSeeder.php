@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Category;
-use App\Models\Tag;
+// use App\Models\Tag;
 
 use Illuminate\Support\Facades\Storage; //Utilicé este facade para crear una carpeta ('Products' para las imagenes)
 
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         Category::factory(5)->create();
-        Tag::factory(20)->create();
+        // Tag::factory(20)->create();
         $this->call(ProductSeeder::class);
     }
 }

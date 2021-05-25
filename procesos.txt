@@ -1,4 +1,4 @@
-Este proyecto fue creado desde la terminal de Xampp, seguidamente me situé en el directorio donde queria crear mi proyecto (htdocs), ejecuté el comando "laravel new 'loremket' --jet" para crear un nuevo proyecto llamado 'loremket' con jetstream, luego seleccioné livewire como libreria.
+Este proyecto fue creado desde la terminal de Xampp, seguidamente me situé en el directorio donde queria crear mi proyecto (htdocs), ejecuté el comando "laravel new 'nombre del proyecto' --jet" para crear un nuevo proyecto llamado 'loremket' con jetstream, luego seleccioné livewire como libreria.
 
 PARA LA CREACIÓN DE MIGRACIONES Y MODELOS UTILICÉ:
 php artisan make:model Category -m (crea un modelo con su migración).

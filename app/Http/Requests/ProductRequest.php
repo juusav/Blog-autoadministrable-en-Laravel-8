@@ -28,6 +28,7 @@ class ProductRequest extends FormRequest
 
         $rules = [
             'name' => 'required',
+            'price' => 'required',
             'slug' => 'required|unique:products',
             'status' => 'required|in:1,2',
             'file' => 'image'
@@ -40,7 +41,6 @@ class ProductRequest extends FormRequest
         if($this->status == 2){
             $rules = array_merge($rules, [ //Si el valor es dos se fucionan los array por el método array_merge
                 'category_id' => 'required',
-                'tags' => 'required',
                 'extract' => 'required',
                 'body' => 'required'
             ]);

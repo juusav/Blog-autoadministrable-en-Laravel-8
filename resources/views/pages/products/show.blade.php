@@ -11,7 +11,7 @@
             <div class="lg:col-span-2">
                 <figure>
                     @if ($product->image)
-                        <img src="{{Storage::url($product->image->url)}}" class="w-full h-80 object-cover object-center">
+                        <img src="{{Storage::url($product->image->url)}}" class="w-full h-70 object-cover object-center">
                     @else
                         <img src="https://cdn.pixabay.com/photo/2020/06/19/21/44/watermelon-5318938_960_720.jpg" class="w-full h-80 object-cover object-center">
                     @endif

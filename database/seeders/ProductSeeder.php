@@ -21,10 +21,6 @@ class ProductSeeder extends Seeder
                 'imageable_id' => $product->id,
                 'imageable_type' => Product::class
             ]);
-            $product->tags()->attach([
-                rand(1, 4),
-                rand(5, 8)
-            ]);
         }
     }
 }

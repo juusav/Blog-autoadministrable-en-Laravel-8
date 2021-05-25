@@ -3,7 +3,7 @@
         <h1 class="uppercase text-center text-3xl font-bold">
             Categoría: {{$category->name}}
         </h1>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         
             @foreach ($products as $product)
                 <x-card-products :product="$product">
