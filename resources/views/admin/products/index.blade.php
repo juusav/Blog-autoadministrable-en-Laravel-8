@@ -6,6 +6,9 @@
     <a href="{{route('admin.products.create')}}" class="btn btn-secondary btn-sm float-right">
         Publicar nuevo producto
     </a>
+    <a href="{{route('admin.products.download')}}" class="btn btn-primary btn-sm float-right">
+        Descargar PDF de productos
+    </a>
     <h1>Listado de productos</h1>
 @stop
 

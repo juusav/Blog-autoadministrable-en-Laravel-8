@@ -16,3 +16,4 @@ Route::resource('categories', CategoryController::class)->except('show')->names(
 
 //Products
 Route::resource('products', ProductController::class)->except('show')->names('admin.products');
+Route::get('products/download-products', [ProductController::class, 'exportExcel'])->name('admin.products.download');

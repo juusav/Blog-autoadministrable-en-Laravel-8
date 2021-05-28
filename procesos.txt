@@ -39,3 +39,8 @@ php artisan make:controller Admin\HomeController (crea una carpeta Admin y dentr
 una vez instalado migre el archivo a migrations para que pueda crear las tablas necesarias 
 -php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" 
 luego ejecuté el comando php artisan migrate para subir la migración a la BD
+
+(INSTALACION DE DESCARGAR EN EXCEL PARA LOS PRODUCTOS)
+https://docs.laravel-excel.com/3.1/getting-started/installation.html
+luego:
+php artisan make:export ProductExport --model=Product

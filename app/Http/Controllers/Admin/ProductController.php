@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProductRequest;
@@ -75,5 +77,9 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('admin.products.index', $product)->with('info', 'El producto se eliminó correctamente');
+    }
+
+    public function exportExcel(){
+        return Excel::download(new ProductsExport, 'ListaProductos.xlsx');
     }
 }
