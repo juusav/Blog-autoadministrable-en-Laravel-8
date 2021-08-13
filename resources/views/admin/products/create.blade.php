@@ -37,7 +37,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
 
 <script>
-    $(document).ready(function(){
+        $(document).ready(function(){
             $("#name").stringToSlug({
                 setEvents: 'keyup keydown blur',
                 getPut: '#slug',

@@ -19,9 +19,11 @@ class ProductController extends Controller
         $this->middleware('can:admin.products.create')->only('create', 'store');
         $this->middleware('can:admin.products.edit')->only('edit', 'update');
     }
+
     public function index(){
         return view('admin.products.index');
     }
+
     public function create(){
         $categories = Category::pluck('name', 'id'); //Pluck crea array del valor especificado 
         return view('admin.products.create', compact('categories'));
@@ -39,9 +41,9 @@ class ProductController extends Controller
                 'url'=> $url
             ]);
         };
-
         return redirect()->route('admin.products.index', $product);
     }
+
     public function edit(Product $product){
         $this->authorize('author', $product);
 
@@ -49,6 +51,7 @@ class ProductController extends Controller
         
         return view('admin.products.edit', compact('product', 'categories'));
     }
+
     public function update(ProductRequest $request, Product $product){
         $this->authorize('author', $product);
         $product->update($request->all());
@@ -71,6 +74,7 @@ class ProductController extends Controller
         }
         return redirect()->route('admin.products.edit', $product)->with('info', 'El producto se actualizó correctamente');
     }
+    
     public function destroy(Product $product){
         $this->authorize('author', $product);        
 

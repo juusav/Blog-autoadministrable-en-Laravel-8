@@ -1,0 +1,2 @@
+COMPOSER INSTALL, COMPOSER UPDATE PROBLEM
+composer update --ignore-platform-reqs
